@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-l()4z(3irk9h-vnjhfba42u&!vbo%j@bwu_+77%2i(b+g+5=fo
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+CSRF_TRUSTED_ORIGINS = ['https://hm-api-yyu4.onrender.com/','https://*.127.0.0.1']
 
 # Application definition
 
