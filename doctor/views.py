@@ -3,8 +3,8 @@ from rest_framework import viewsets
 from . import models
 from . import serializers
 from rest_framework import filters, pagination
-from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from django.db.models import F
 
 class SpecializationViewset(viewsets.ModelViewSet):
     queryset = models.Specialization.objects.all()
@@ -30,7 +30,7 @@ class AvailableTimeViewset(viewsets.ModelViewSet):
     filter_backends = [AvailableTimeForSpecificDoctor]
 
 class DoctorPagination(pagination.PageNumberPagination):
-    page_size = 1 # items per page
+    page_size = 3 # items per page
     page_size_query_param = page_size
     max_page_size = 100
 
@@ -40,6 +40,12 @@ class DoctorViewset(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     pagination_class = DoctorPagination
     search_fields = ['user__first_name', 'user__email', 'designation__name', 'specialization__name']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        # Apply ordering by user's first name
+        queryset = queryset.order_by('user__first_name')
+        return queryset
     
 class ReviewViewset(viewsets.ModelViewSet):
     
