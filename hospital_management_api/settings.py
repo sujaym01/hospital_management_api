@@ -29,8 +29,7 @@ SECRET_KEY = 'django-insecure-l()4z(3irk9h-vnjhfba42u&!vbo%j@bwu_+77%2i(b+g+5=fo
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://hm-api-yyu4.onrender.com','https://http://127.0.0.1:5500']
-# CSRF_TRUSTED_ORIGINS = ['https://hm-api-yyu4.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://hm-api-yyu4.onrender.com','https://*.127.0.0.1']
 
 # Application definition
 
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "corsheaders",
     'rest_framework',
     'django_filters',
     'rest_framework.authtoken',
@@ -54,12 +54,15 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
 
 ROOT_URLCONF = 'hospital_management_api.urls'
 
