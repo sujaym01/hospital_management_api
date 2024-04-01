@@ -63,6 +63,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5500",  # Add your local development URL
+    "http://localhost:5500",  # Also add localhost in case it's being accessed via localhost
+    "https://hm-api-yyu4.onrender.com",
+    # Add more origins if needed
+]
+
 CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = ["https://hm-api-yyu4.onrender.com"]
 
